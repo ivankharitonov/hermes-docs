@@ -42,9 +42,8 @@ EasyInk includes two built-in roles:
 | Start signing session | ✅ | ✅ |
 | View organization signing sessions | ✅ | ⛔ |
 | View signing sessions | ✅ | ✅ |
-| Void signing session | ✅ | ✅* |
+| Void signing session | ✅ | ✅ |
 
-**Caution:** `Void signing session` appears enabled for **Standard User** in the screenshots. Confirm if this is intended in your org; many teams restrict voiding to admins.
 
 ## Default configuration (recommended)
 - Assign **Administrator** to a small group of trusted users responsible for org configuration.
