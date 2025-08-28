@@ -4,7 +4,7 @@ description: "Start a signing session and track status in under 10 minutes."
 audience: ["senders", "admins"]
 keywords: ["e-sign", "signing session", "quickstart"]
 easyink_version: "web"
-last_reviewed: "2025-08-27"
+last_reviewed: "2025-08-28"
 related: ["../how-to/create-and-send-document.md", "../admin/roles-permissions.md"]
 ---
 
@@ -14,41 +14,47 @@ related: ["../how-to/create-and-send-document.md", "../admin/roles-permissions.m
 
 ## Prerequisites
 - An EasyInk account with **Standard User** or **Administrator** role.
-- Access to **staging** (`https://staging.easyink.io`) or **production** (`https://easyink.io`).
-- A PDF or DOCX to sign.  
+- **Environment:** Use **Production** at `https://easyink.io`. If your organization has a customer-safe **test environment**, use the URL provided by your administrator.
+- A PDF to sign.  
 **Note:** If your org enforces SSO, use **OneLogin** on the sign-in page.
 
 ## 1. Sign in
-1. Open your environment URL.
+1. Open `https://easyink.io`.
 2. Enter **Username** and **Password**, or choose **OneLogin**.
 3. Click **Login**.
 
 **Tip:** If you can’t sign in, contact your admin to confirm your role and SSO access.
 
 ## 2. Start a new signing session
-**UI**
-1. From the left navigation, click **New signing session** (or **Home → Start new signing session**).
-2. Upload your document(s).
-3. (Optional) Select a **template overlay** if your admin prepared one.
-4. Click **Continue**.
+1. From the left navigation, click **New signing session**  
+   *or* on **Home**, click **Start new signing session**.
+2. In **Create new signing session**, enter a **Subject** (example: `2025 Handbook Signing – Mikhailova`) and click **Create**.
 
 ## 3. Add recipients
-1. Add each recipient’s **Name** and **Email**.
-2. (Optional) Set a **signing order** if some recipients must sign before others.
-3. (Optional) Choose a **notification sender** and a **settings set** (e.g., reminders, expirations) if available in your org.
-4. Click **Review**.
+1. Click **Add Participant**.
+2. Fill **First Name**, **Last Name**, **Email**.  
+   (Optional) Choose delivery method (**email** and/or **sms/text**), add **Phone**, and set **Language**.
+3. Click **Save**. Add more participants as needed.
+4. (Optional) Set a **signing order** if some recipients must sign before others.
 
 **Note:** Your admin controls whether you can apply template overlays and which notification senders are available.
 
-## 4. Start the session
-1. Review recipients and settings.
-2. Click **Start signing session**.
+## 4. Add your document and place fields
+1. Click **+ Add document** and select your PDF.
+2. In the page list, open the target page (e.g., **Page 14**).
+3. Drag **Full name**, **Signature**, and **Date** fields into position for the active recipient.
 
-Recipients receive invitations to sign. You can track progress on the dashboard.
+**Tip:** Ensure the intended recipient is selected in the left panel before placing fields.
 
-## 5. Track status
+## 5. Finalize and start
+1. Click **Finalize**.
+2. When prompted **Your signing session is ready**, click **Start now**.  
+   (Or choose **Start later** to keep it in **Ready to start**.)
+
+## 6. Track status
 Use the status filters on **Home**:
-- **Need to sign**, **Draft**, **Ready to start**, **In progress**, **Finished**, **Declined**, **Voided**, **Expired**.
+- **In progress** while recipients are signing.
+- **Finished** after all required actions are complete.
 
 **Tip:** Click a session to view details, resend notifications, or (with permission) **Void** the session.
 
@@ -56,13 +62,13 @@ Use the status filters on **Home**:
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | Recipient did not receive email | Spam filtering or typo | Verify email address; ask recipient to check spam; resend notification. |
-| **Start signing session** disabled | Missing permission or incomplete setup | Ask an **Administrator** to confirm your role and required fields. |
-| Can’t apply a template overlay | Overlay not shared with your org/role | Ask an **Administrator** to grant access or apply the overlay for you. |
+| **Start now** does not appear | Session not finalized | Click **Finalize** first. |
+| Can’t edit after start | Permission or session state | Ask an **Administrator** to enable **Change signing session** or void and recreate. |
 
 ## Next steps
 - Create a reusable **template overlay** so senders don’t manually place fields.
 - Configure **notification senders** and **settings sets** for consistent reminders and expirations.
 
 **Related reading**
-- See also: [Create and send a document](../how-to/create-and-send-document.md)  
+- See also: [Create and start a signing session](../how-to/create-and-send-document.md)  
 - See also: [Roles and permissions](../admin/roles-permissions.md)
