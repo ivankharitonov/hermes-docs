@@ -14,18 +14,16 @@ related: ["../how-to/create-and-send-document.md", "settings-sets.md", "roles-pe
 ## Overview
 A **template overlay** predefines:
 - **Participants** (who signs)
-- **Placed fields** (Signature, Initials, Date, Checkbox, Free text, Full name, Date Time Signature)
+- **Placed fields** (Initials, Signature, Date, Checkbox, Free text, Full name, Date Time Signature)
 
 Overlays live under **Manage templates** and are **applied during session preparation** after you add a document.
 
-**Note:** In the editor, the left panel is labeled **Participants**. That’s what we call “roles” elsewhere in the docs.
-
 ## Example first
-You send the same NDA weekly. Build an overlay **“NDA — Candidate”** with:
+You send the same NDA weekly. Build an overlay **"NDA — Candidate"** with:
 - Participant: **Candidate** (Signer)
 - Fields: **Signature** on page 2, **Initials** on each page, **Full name** on page 1
 
-During a new session, upload the NDA, open the document menu, and choose **Apply template overlay**. Fields appear in the right places. Enter the Candidate’s email and finalize.
+During a new session, upload the NDA, open the document menu, and choose **Apply template overlay**. Fields appear in the right places. Enter the Candidate's email and finalize.
 
 ## Before you begin
 - **Role:** Admin with permission to manage templates/overlays (see [Roles and permissions](roles-permissions.md)).
@@ -38,16 +36,16 @@ During a new session, upload the NDA, open the document menu, and choose **Apply
 2. (Optional) **Add folder** to organize overlays.
 3. Click **Create new template** → Name the overlay → **Create**.
 4. Click **Add document** (top-right) and upload the base file.
-5. **Add Participant** in the left panel and name the role(s).
+5. **Add Participant** in the left panel and name the participant(s).
 6. Drag fields from the left palette onto pages (make sure the correct participant is selected).
 7. Click **Finalize** (bottom-right). The overlay is now available to apply.
 
 ## Apply an overlay during session preparation
 1. Start a **New signing session**.
 2. Click **Add document** and upload your file.
-3. In **UPLOADED DOCUMENTS**, open the document’s menu (⋯) and choose **Apply template overlay**.
+3. In **UPLOADED DOCUMENTS**, open the document's menu (⋯) and choose **Apply template overlay**.
 4. Pick your overlay. Fields and participants are added to the session.
-5. Use **+ Add Myself** if you are also a participant; **Bulk Upload** is available when adding many recipients/files (if enabled).
+5. Use **+ Add Myself** if you are also a participant; **Bulk Upload** is available when adding many participants/files (if enabled).
 6. Enter emails for the predefined participants and complete the session.
 
 **Tip:** If you fine-tune placements ad-hoc and want to reuse them, use the same menu (⋯) and select **Save as template overlay**.
@@ -59,9 +57,9 @@ During a new session, upload the NDA, open the document menu, and choose **Apply
 ## UI reference (session + overlay)
 | UI label | Where | Purpose |
 |---|---|---|
-| **Add Participant** | Overlay editor | Create a participant (role). |
+| **Add Participant** | Overlay editor | Create a participant. |
 | **Add document** | Overlay editor / Session | Attach/replace the base file. |
-| **Bulk Upload** | Session | Upload recipients/files in bulk (if enabled). |
+| **Bulk Upload** | Session | Upload participants/files in bulk (if enabled). |
 | **+ Add Myself** | Session | Add yourself as a participant quickly. |
 | **Apply template overlay** | Session → Uploaded documents (⋯) | Apply an existing overlay to the uploaded file. |
 | **Save as template overlay** | Session → Uploaded documents (⋯) | Save current placements as a reusable overlay. |

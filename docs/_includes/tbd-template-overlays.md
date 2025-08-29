@@ -13,7 +13,7 @@ related: ["../admin/template-overlays.md", "../admin/settings-sets.md", "../admi
 - UI labels & exact click-path for creating/publishing overlays.
 - Which notifications are **overlay-specific** vs global defaults.
 - Supported **field types** and **validation** (and where configured).
-- Ability to **lock roles/fields** vs allow sender overrides; tenant controls.
+- Ability to **lock participants/fields** vs allow sender overrides; tenant controls.
 - Impact of **Archive** on live sessions; behavior for history/analytics.
 - Where to attach a default **Settings set**; precedence with org defaults.
 - Export/import or clone overlays across environments.

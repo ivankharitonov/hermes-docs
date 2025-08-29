@@ -49,6 +49,7 @@ EasyInk includes two built-in roles:
 | View signing sessions | ✅ | ✅ |
 | Void signing session | ✅ | ✅ |
 
+**Note:** **Change signing session** allows editing active sessions after they've started. **Change signing session draft** only applies to sessions that haven't been finalized yet.
 
 ## Default configuration (recommended)
 - Assign **Administrator** to a small group of trusted users responsible for org configuration.

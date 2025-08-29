@@ -159,7 +159,7 @@ classDiagram
 - Sensitive env details removed from public pages.
 
 ## 14) Terminology (canonical)
-- Signing session, Document, Participant (Recipient), Template overlay, Notification sender, Settings set, Finalize, Start now, Void, Download All.
+- Signing session, Document, Participant, Template overlay, Notification sender, Settings set, Finalize, Start now, Void, Download All.
 
 **Related reading**
 - See also: `docs/get-started/quickstart.md`  

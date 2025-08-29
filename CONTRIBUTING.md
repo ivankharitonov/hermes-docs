@@ -79,8 +79,8 @@ See `STYLE.md` for “How-to” and “Concept” skeletons you can copy/paste.
 ## Versioning & changes
 
 - Keep breaking UI terminology changes in a **separate PR** with screenshots.
-- If you change terminology across the docs (e.g., Recipient → Participant), include a short “Why” note in the PR and update the **Glossary**.
-- Add user-visible product changes to `docs/release-notes/CHANGELOG.md` (create the file if it doesn’t exist).
+- If you change terminology across the docs, include a short "Why" note in the PR and update the **Glossary**.
+- Add user-visible product changes to `docs/release-notes/CHANGELOG.md` (create the file if it doesn't exist).
 
 ---
 

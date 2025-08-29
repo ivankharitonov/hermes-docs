@@ -10,7 +10,7 @@ related: ["../get-started/quickstart.md", "./roles-permissions.md", "../how-to/c
 
 # Notification senders
 
-Use notification senders to control the **From name** and **From address** that recipients see on invitation and reminder emails.
+Use notification senders to control the **From name** and **From address** that participants see on invitation and reminder emails.
 
 **Example first**
 - From name: `EasyInk HR`
@@ -23,29 +23,29 @@ Use notification senders to control the **From name** and **From address** that 
 ## Before you begin
 - **Role:** Administrator.
 - **Decisions:** Which **From name** and **From address** you want to use in production.
-- **Deliverability:** Coordinate with IT to ensure your domain’s **SPF**, **DKIM**, and **DMARC** are correct.
+- **Deliverability:** Coordinate with IT to ensure your domain's **SPF**, **DKIM**, and **DMARC** are correct.
 
 **Caution:** Use only domains your company owns. Avoid free mailbox domains for production sending.
 
 ## Add a notification sender (UI)
 1. Open the admin area for senders.  
    - Go to your admin navigation and open **Notification senders**.  
-   - **Note:** The exact menu path can vary by tenant. If you can’t find it, search the admin menu for “sender”.
+   - **Note:** The exact menu path can vary by tenant. If you can't find it, search the admin menu for "sender".
 2. Click **Add sender**.
 3. Fill:
-   - **From name** (shown to recipients)
-   - **From email** (the address recipients see)
+   - **From name** (shown to participants)
+   - **From email** (the address participants see)
    - **Reply-To** (optional)
 4. Choose **Set as default for organization** (optional).
 5. Click **Save**.
 
-**Tip:** Keep the From name short and clear (e.g., “Acme HR” or “Acme Contracts”).
+**Tip:** Keep the From name short and clear (e.g., "Acme HR" or "Acme Contracts").
 
 ## Use a sender when starting a session
 - In the session editor, choose **Notification sender** if your tenant shows this option.  
-- If you don’t see a selector, your **default sender** will be used.
+- If you don't see a selector, your **default sender** will be used.
 
-**Note:** Standard Users don’t manage senders. They can use the default or any sender admins expose to them.
+**Note:** Standard Users don't manage senders. They can use the default or any sender admins expose to them.
 
 ## Test before production
 1. Create a test signing session addressed to your own inbox.
@@ -54,10 +54,10 @@ Use notification senders to control the **From name** and **From address** that 
    - The message lands in **Inbox** (not Spam/Promotions).
 3. If testing in a customer-safe environment, ensure email is **allow-listed** as per your environment policy.
 
-**Caution:** Do not send test invitations to real external recipients from non-production environments.
+**Caution:** Do not send test invitations to real external participants from non-production environments.
 
 ## Deliverability checklist
-- **SPF** includes your email provider’s sending servers.
+- **SPF** includes your email provider's sending servers.
 - **DKIM** is enabled and aligned for the sender domain.
 - **DMARC** exists (`p=quarantine` or `p=reject` in production).
 - **From** and **Reply-To** are consistent and recognizable.
@@ -69,10 +69,10 @@ Use notification senders to control the **From name** and **From address** that 
 
 | Symptom | Likely cause | Fix | Time to verify |
 |---|---|---|---|
-| Recipients report missing emails | Spam filtering or domain misconfig | Verify SPF/DKIM/DMARC; resend; consider warming the domain. | 1–24 h |
+| Participants report missing emails | Spam filtering or domain misconfig | Verify SPF/DKIM/DMARC; resend; consider warming the domain. | 1–24 h |
 | Sender not selectable in session | No default set or selector hidden by tenant config | Set an org default or expose the sender to users. | Immediate |
-| “From” shows a generic address | Your provider rewrote the From due to policy | Align DMARC; use a verified sending domain. | 1–24 h |
-| Bounces increase | Invalid addresses or blocklisted domain | Clean recipient lists; check bounce logs with IT. | 1–24 h |
+| "From" shows a generic address | Your provider rewrote the From due to policy | Align DMARC; use a verified sending domain. | 1–24 h |
+| Bounces increase | Invalid addresses or blocklisted domain | Clean participant lists; check bounce logs with IT. | 1–24 h |
 
 ## Security and compliance
 - Use company-owned domains only.

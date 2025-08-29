@@ -36,7 +36,7 @@ Use this checklist to close gaps before marking the page as final. Keep answers 
 - [ ] Are there domain requirements (SPF/DKIM/DMARC) that must be met before a sender can be used here?
 
 ## 5) Locale & language
-- [ ] Where is **locale** set: per **settings set**, per **recipient**, or elsewhere?
+- [ ] Where is **locale** set: per **settings set**, per **participant**, or elsewhere?
 - [ ] **Supported locales** list to publish (requested: `en-US`, `es-MX`).
 - [ ] Fallback behavior if a template isn’t localized: which language is used?
 

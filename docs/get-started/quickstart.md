@@ -4,7 +4,7 @@ description: "Start a signing session and track status in under 10 minutes."
 audience: ["senders", "admins"]
 keywords: ["e-sign", "signing session", "quickstart"]
 easyink_version: "web"
-last_reviewed: "2025-08-28"
+last_reviewed: "2025-01-27"
 related: ["../how-to/create-and-send-document.md", "../admin/roles-permissions.md"]
 ---
 

@@ -37,7 +37,7 @@ Use this page to choose the right environment, set up safe customer tests, and a
    - Create a dedicated **customer test org** or verify an existing one.
 
 2. **Invite users**
-   - Add the customer’s test users as **Standard User** (or as needed).
+   - Add the customer's test users as **Standard User** (or as needed).
    - If your tenant uses SSO, configure the **OneLogin test connector** (test IdP) and map roles.
 
 3. **Configure sending defaults**
@@ -64,7 +64,7 @@ Use this page to choose the right environment, set up safe customer tests, and a
 
 ## Data and retention
 
-- **Production:** follows your org’s retention policies for documents, audit trail, and logs.
+- **Production:** follows your org's retention policies for documents, audit trail, and logs.
 - **Staging/Developer Test:** non-production; expected shorter retention and possible resets.  
   - Document retention (Staging): **TBD**  
   - Audit trail retention (Staging): **TBD**  
@@ -74,7 +74,7 @@ Use this page to choose the right environment, set up safe customer tests, and a
 
 ## Outbound integrations in non-prod
 
-- **Email:** Prefer allow-listing or a mail sandbox. Avoid sending to real external recipients.
+- **Email:** Prefer allow-listing or a mail sandbox. Avoid sending to real external participants.
 - **SMS:** Use test numbers or a provider sandbox; confirm billing behavior in non-prod.
 - **Webhooks:** Send to **test endpoints** only. Rotate secrets before promotion to Production.
 

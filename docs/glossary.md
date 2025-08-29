@@ -4,37 +4,36 @@ description: "Clear definitions of EasyInk terms used across the docs."
 audience: ["senders", "admins", "developers", "signers"]
 keywords: ["glossary", "terminology", "definitions"]
 easyink_version: "web"
-last_reviewed: "2025-08-28"
+last_reviewed: "2025-01-27"
 related: ["./get-started/quickstart.md", "./how-to/create-and-send-document.md", "./admin/roles-permissions.md"]
 ---
 
 # Glossary
 
-Short, precise definitions of words you’ll see in the UI and docs.
+Short, precise definitions of words you'll see in the UI and docs.
 
 ## Core objects
 - **Signing session**  
-  The container for documents, recipients, settings, and status. You create it, place fields, **Finalize**, and **Start**.
+  The container for documents, participants, settings, and status. You create it, place fields, **Finalize**, and **Start**.
 
 - **Document**  
   A file you upload to be signed (for example, a PDF).
 
-- **Recipient / Participant**  
-  A person asked to sign. You add their **First name**, **Last name**, **Email**, and (optionally) **Phone** and **Language**.  
-  **Note:** The UI uses **Participant** in dialogs (e.g., **Add Participant**).
+- **Participant**  
+  A person asked to sign. You add their **First name**, **Last name**, **Email**, and (optionally) **Phone** and **Language**.
 
 ## Configuration
 - **Template overlay**  
   A reusable set of fields pre-placed on a document layout. Overlays save time and reduce placement errors.
 
 - **Notification sender**  
-  The “From” identity shown on invitation emails. Admins set it so recipients recognize your organization.
+  The "From" identity shown on invitation emails. Admins set it so participants recognize your organization.
 
 - **Settings set**  
   A preset of sending options such as reminders and expiration. Apply it to a session for consistent behavior.
 
 - **Signing order**  
-  The sequence recipients must follow. If set, later signers can’t act until earlier signers finish.
+  The sequence participants must follow. If set, later signers can't act until earlier signers finish.
   
   - **Settings set:** Org-level defaults for sending (time zone, expiry, sender, SMS rules, templates). Exactly **one** settings set per organization. One set can be **shared** by multiple orgs.
 - **Template overlay:** A reusable layout of **participants** and **placed fields**. Created under **Manage templates** and **applied during session preparation** from **Uploaded documents → ⋯ → Apply template overlay**.
@@ -48,10 +47,10 @@ Short, precise definitions of words you’ll see in the UI and docs.
   After you **Finalize**, choose **Start now** to send invitations immediately, or **Start later** to keep the session in **Ready to start**.
 
 - **Resend**  
-  Sends another invite to a recipient. Useful after email corrections or spam issues.
+  Sends another invite to a participant. Useful after email corrections or spam issues.
 
 - **Void**  
-  Cancels a session. Use when you must stop signing. Voided sessions can’t be restarted.
+  Cancels a session. Use when you must stop signing. Voided sessions can't be restarted.
 
 ## Files and outputs
 - **Uploaded documents**  
@@ -72,12 +71,12 @@ Short, precise definitions of words you’ll see in the UI and docs.
 |---|---|---|
 | **Draft** | Session created; fields not finalized. | Place fields → **Finalize**. |
 | **Ready to start** | Finalized but not started. | Open the session → **Start**. |
-| **In progress** | Invitations sent; waiting on recipients. | Monitor; **Resend** if needed. |
-| **Finished** | All required recipients completed signing. | **Download All** and archive. |
-| **Declined** | A recipient refused to sign. | Replace recipient or create a new session. |
+| **In progress** | Invitations sent; waiting on participants. | Monitor; **Resend** if needed. |
+| **Finished** | All required participants completed signing. | **Download All** and archive. |
+| **Declined** | A participant refused to sign. | Replace participant or create a new session. |
 | **Voided** | Session canceled by a user with permission. | Create a new session if needed. |
 | **Expired** | Session ended due to expiration policy. | Start a new session; adjust policy via **Settings set** if required. |
-| **Need to sign** | A personalized queue showing items where *you* are a recipient. | Open and complete signing. |
+| **Need to sign** | A personalized queue showing items where *you* are a participant. | Open and complete signing. |
 
 **Tip:** Status names match the filters on the **Home** dashboard.
 
