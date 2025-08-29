@@ -1,110 +1,105 @@
 ---
 title: "Environments (internal)"
-description: "Internal guide to Production, Staging (customer test), and developer test environments."
+description: "Policies and safe practices for Production, Staging (customer test), and Developer Test."
 audience: ["admins", "developers"]
-keywords: ["environments", "production", "staging", "test", "SSO"]
+keywords: ["environments", "production", "staging", "test", "SSO", "allow-list"]
 easyink_version: "web"
-last_reviewed: "2025-08-28"
-related: ["./roles-permissions.md", "../get-started/quickstart.md", "../how-to/create-and-send-document.md"]
+last_reviewed: "2025-08-29"
+related: ["./roles-permissions.md", "./notification-senders.md", "./settings-sets.md", "../troubleshooting/sending.md", "../get-started/quickstart.md"]
 ---
 
 # Environments (internal)
 
 Use this page to choose the right environment, set up safe customer tests, and avoid leaking real data into non-production.
 
-## Quick reference
+## Overview
+EasyInk runs in three environment types:
 
-| Environment | Purpose | Base URL | Who uses it | Data policy | Email/SMS | Webhooks | SSO | Notes |
-|---|---|---|---|---|---|---|---|---|
-| **Production** | Live customer traffic | `https://easyink.io` | All customers and org users | Production data; org retention policies apply | Enabled | Enabled | OneLogin (prod) | Change-managed; monitored. |
-| **Staging (customer test)** | Customer UAT and internal QA | `https://staging.easyink.io` | Customers invited for testing; EasyInk staff | **Non-production.** Use synthetic data only. Purge window: **TBD** | **TBD** (recommend allow-list only) | **TBD** (use test endpoints) | OneLogin (test connector) **TBD** | Feature flags may differ from prod. |
-| **Developer Test N** | Engineering tests and feature work | **TBD** (e.g., `https://dev-<name>.easyink.internal`) | Engineering only | Non-production; synthetic data only; can reset anytime | Usually disabled/sandboxed | Use test endpoints only | Usually disabled or test IdP | No customer access. |
+- **Production** — real customer data and live notifications.
+- **Staging (customer test)** — customer acceptance testing with controlled notifications.
+- **Developer Test** — short-lived instances for internal QA and development.
 
-**Caution:** Never upload real customer or employee PII to Staging or Developer Test environments.
+> **Caution:** Never send test invitations to real external **participants** from non-production environments. Use an allow-listed domain or a mail sandbox.
 
-## When to use which
+## Environment matrix
 
-- Use **Production** for all real sending and signing.
-- Use **Staging** for **customer acceptance testing** and internal demos that must mirror production UX.
-- Use **Developer Test** environments for engineering work, experiments, and unstable features.
+| Environment | Primary use | Who uses it | Data policy | Email/SMS policy | Webhooks | SSO | Purge |
+|---|---|---|---|---|---|---|---|
+| **Production** | Live documents and signatures | Senders, Admins | Real data only | Enabled with verified **notification sender** | Enabled to prod endpoints | Enabled (prod IdP) | No automatic purge |
+| **Staging (customer test)** | Customer UAT and demos | Admins, selected senders | Test data only | **TBD:** allow-list vs off by default | **TBD** (usually allowed to staging endpoints) | **TBD** (OneLogin test connector) | **TBD:** purge window |
+| **Developer Test** | Internal QA/dev | Developers, QA | Synthetic data only | Off; or sent to sandbox/inbox catcher | Optional; local or stub | Optional; dev connector | Frequent purge (short) |
 
-**Tip:** If a customer needs hands-on testing, create a **customer test tenant** on **Staging** (see checklist below).
+> **Tip:** If you must demonstrate email content in non-prod, use a sandbox inbox (e.g., MailHog/Mailtrap) or an allow-listed corporate domain.
 
-## Customer test setup (Staging) — checklist
+## Safe testing checklist (non-prod)
+1. **Accounts:** Use internal identities (you@company.com) and test phone numbers.
+2. **Participants:** Use unique aliases per run (e.g., `alex+uat-2025-08-29@company.com`).
+3. **Notification sender:** Use a clearly labeled non-prod sender (e.g., “Acme Test”).
+4. **Settings set:** Set short expirations (e.g., 1 day) and quiet hours for SMS.
+5. **Webhooks:** Point to staging/test endpoints; add environment headers to help consumers discard non-prod events.
+6. **Audit:** Mark sessions and overlays with “TEST” in the subject/name for easy filtering.
+7. **Data retention:** Confirm the purge policy before uploading any real customer content. If unsure, **do not** upload.
 
-1. **Create or select the organization**
-   - As an **Administrator**, go to **Security → Organizations** (or your org management area).
-   - Create a dedicated **customer test org** or verify an existing one.
+## Production
+**When to use:** Real business operations.
 
-2. **Invite users**
-   - Add the customer's test users as **Standard User** (or as needed).
-   - If your tenant uses SSO, configure the **OneLogin test connector** (test IdP) and map roles.
+**Defaults**
+- **Email/SMS:** Enabled. Use a verified **notification sender**.
+- **Webhooks:** Enabled. Point to production consumers only.
+- **SSO:** Enabled (production IdP).
 
-3. **Configure sending defaults**
-   - **Notification sender:** set a recognizable From name and address for test emails.
-   - **Settings set:** define reminders and expiration suitable for short test cycles (e.g., 7–14 days).
+**Caution:** Configuration changes (e.g., **settings sets**, **notification senders**) affect future sessions immediately. Coordinate changes and announce to senders.
 
-4. **Guard outbound channels**
-   - Email/SMS in Staging should be **allow-listed** to specific domains/phones if possible (**TBD** per tenant).
-   - Clearly label messages as **TEST** in the Notification sender if supported.
+## Staging (customer test)
+**When to use:** Customer UAT, demos, pre-production validation.
 
-5. **Prepare test data**
-   - Use fake names, emails under an allow-listed domain, and placeholder phone numbers.
-   - Upload only **synthetic** or scrubbed documents.
+**Recommended policies**
+- **Email:** Prefer **allow-list** (e.g., `*@company.com`) or a sandbox mailbox. External domains blocked by default.
+- **SMS:** Disabled or limited to test numbers; enforce quiet hours.
+- **Webhooks:** Enabled to **staging** endpoints only; include an `X-Environment: staging` header.
+- **SSO:** Use a **test connector** with a small set of test users.
+- **Data retention:** Short purge window to reduce risk.
 
-6. **(Optional) Webhooks**
-   - Register a test endpoint (e.g., a request bin) instead of a production system.
-   - Store secrets in your test vault/tooling; never reuse production secrets.
+**TBD — confirm and document**
+- Staging **purge window** (e.g., 7/14/30 days): **TBD**
+- **Email** policy (allow-list pattern, bounce domain, sandbox): **TBD**
+- **SMS** policy (enabled?, test number range, quiet hours): **TBD**
+- **Webhooks** availability and endpoint convention: **TBD**
+- **SSO** connector name, metadata, and mapping rules: **TBD**
+- **Owner(s)** responsible for updating this page when policies change: **TBD**
 
-7. **Communicate limits**
-   - Share known differences vs Production (feature flags, email throttling, purge window).
-   - Provide the **Staging URL** and the intended **test window**.
+> **Note:** Once confirmed, replace **TBD** with exact values and update `last_reviewed`.
 
-**Note:** If Staging email delivery is disabled by default, plan for **link-based signing** testing or use an internal mail catcher.
+## Developer Test
+**When to use:** Internal QA and development only.
 
-## Data and retention
+**Defaults**
+- **Email:** Off or routed to a sandbox/catcher.
+- **SMS:** Off.
+- **Webhooks:** Optional; often stubbed or pointed to localhost tunnels during testing.
+- **SSO:** Optional; dev connector or local accounts.
+- **Purge:** Frequent automatic cleanup to keep data small.
 
-- **Production:** follows your org's retention policies for documents, audit trail, and logs.
-- **Staging/Developer Test:** non-production; expected shorter retention and possible resets.  
-  - Document retention (Staging): **TBD**  
-  - Audit trail retention (Staging): **TBD**  
-  - Webhook/log retention (Staging): **TBD**
+**Tip:** If you need to test invitations, explicitly enable the sandbox sender and confirm messages are not leaving your network.
 
-**Caution:** If a customer requires longer retention during UAT, document an exception and its expiry date.
+## Troubleshooting
 
-## Outbound integrations in non-prod
+| Symptom | Likely cause | Fix | Time to verify |
+|---|---|---|---|
+| Participant didn’t get invite in **Staging** | Domain not on allow-list or email disabled | Add the domain to the allow-list or use a sandbox inbox; **Resend**. | 1–5 min |
+| **Start now** succeeds but webhook consumer shows nothing | Webhooks disabled for the environment or wrong endpoint | Enable webhooks for Staging/Dev; point to staging consumer; verify with a test event. | 5–10 min |
+| SSO works in Production but fails in Staging | Wrong connector or attribute mapping | Switch to the **test connector**; verify NameID/email mapping; retry. | 5–15 min |
+| SMS never arrives in non-prod | SMS disabled or outside quiet hours | Enable for test range and widen allowed time window; retry. | Next SMS window |
+| Sensitive data found in Staging | Real data uploaded by mistake | **Void** affected sessions; purge per policy; notify security; update allow-list rules. | Same day |
 
-- **Email:** Prefer allow-listing or a mail sandbox. Avoid sending to real external participants.
-- **SMS:** Use test numbers or a provider sandbox; confirm billing behavior in non-prod.
-- **Webhooks:** Send to **test endpoints** only. Rotate secrets before promotion to Production.
-
-## SSO and access
-
-- **Production:** OneLogin (prod) with full controls.  
-- **Staging/Developer Test:** use a **test IdP/connector**. Confirm role mappings mirror Production.
-
-**Tip:** Keep a break-glass local admin account in every environment for lockout recovery.
-
-## Promotion flow (high level)
-
-1. **Dev Test → Staging:** feature behind a flag; verify flows end-to-end with synthetic data.  
-2. **Staging → Limited customer UAT:** add allow-listed emails/phones; run acceptance scripts.  
-3. **Enable in Production:** remove the flag or roll out gradually; monitor and roll back if needed.
-
-**Note:** Track promotion readiness with a short checklist (tests passing, docs updated, support briefed).
-
-## Fill me in (placeholders to update)
-
-- Staging purge window: **TBD**  
-- Email policy on Staging (enabled/allow-list/off): **TBD**  
-- SMS policy on Staging: **TBD**  
-- Webhook availability on Staging: **TBD**  
-- OneLogin test connector details: **TBD**  
-- Developer Test environment URLs and owners: **TBD**
-
-**Tip:** Update this page when any environment policy changes. Set a calendar reminder for quarterly review.
+## Governance and reviews
+- **Change control:** Treat environment policy changes like product changes. Announce, document, and review.
+- **Quarterly review:** Validate allow-lists, purge jobs, webhook endpoints, and SSO connectors.
+- **Monitoring:** Track non-prod mail volume and bounce rates to catch misconfigurations.
 
 **Related reading**
 - See also: [Roles and permissions](./roles-permissions.md)  
-- See also: [Quickstart: send your first document](../get-started/quickstart.md)  
-- See also: [Create and start a signing session](../how-to/create-and-send-document.md)
+- See also: [Notification senders](./notification-senders.md)  
+- See also: [Settings sets](./settings-sets.md)  
+- See also: [Troubleshooting: sending and signing](../troubleshooting/sending.md)  
+- See also: [Quickstart: send your first document](../get-started/quickstart.md)

@@ -4,8 +4,8 @@ description: "Assign capabilities to users for drafting, starting, and administe
 audience: ["admins"]
 keywords: ["roles", "permissions", "admin"]
 easyink_version: "web"
-last_reviewed: "2025-08-27"
-related: ["../get-started/quickstart.md", "../how-to/create-and-send-document.md"]
+last_reviewed: "2025-08-29"
+related: ["../get-started/quickstart.md", "../how-to/create-and-send-document.md", "./settings-sets.md", "./template-overlays.md", "./notification-senders.md"]
 ---
 
 # Roles and permissions
@@ -17,12 +17,13 @@ EasyInk includes two built-in roles:
 - **Administrator** – full admin and sending capabilities.
 - **Standard User** – sending capabilities without org-level administration.
 
-- **Organization model:** Each user belongs to **one** organization. Each organization uses **one** applied **settings set**.
-- **Admins:** Can create/edit/finalize **settings sets**; assign them to organizations; create/finalize **template overlays**.
-- **Senders:** Can apply **template overlays** during session preparation; cannot change the **From** address (it comes from the org’s settings set).
+**Organization model**
+- Each user belongs to **one** organization.
+- Each organization has **one** applied **settings set** (a set can be shared across orgs).
+- **Admins** configure **settings sets**, **notification senders**, and **template overlays**.
+- **Senders** can apply template overlays during session preparation; the **From** address comes from the org’s settings set.
 
-
-**Note:** Your tenant may include more granular toggles. The tables below reflect the permissions visible in the current UI.
+> **Note:** Your tenant may include more granular toggles. The table reflects the permissions visible in the current UI.
 
 ## Role capability matrix
 
@@ -43,30 +44,33 @@ EasyInk includes two built-in roles:
 | View signing session drafts | ✅ | ✅ |
 | View signing session templates | ✅ | ✅ |
 | Create signing session | ✅ | ✅ |
-| Change signing session | ✅ | ⛔ |
+| Change signing session *(edit after start)* | ✅ | ⛔ |
 | Start signing session | ✅ | ✅ |
 | View organization signing sessions | ✅ | ⛔ |
 | View signing sessions | ✅ | ✅ |
 | Void signing session | ✅ | ✅ |
 
-**Note:** **Change signing session** allows editing active sessions after they've started. **Change signing session draft** only applies to sessions that haven't been finalized yet.
+> **Note:** **Change signing session** allows editing active sessions after they’ve started. **Change signing session draft** only applies before **Finalize**.
 
 ## Default configuration (recommended)
-- Assign **Administrator** to a small group of trusted users responsible for org configuration.
+- Assign **Administrator** to a small, trusted group who manage org configuration.
 - Assign **Standard User** to most senders.
 - Review **Bulk send access** and **Void signing session** before enabling for Standard Users.
 
 ## Manage roles (UI)
 1. Go to **Security → Roles**.
-2. Select a role (e.g., **Administrator** or **Standard User**).
+2. Select a role (**Administrator** or **Standard User**).
 3. Toggle capabilities as needed.
 4. Click **Save**.
 
 ## Audit considerations
-- Changes to roles should be limited to administrators.
+- Limit who can modify roles and org-wide settings.
 - Record who changed role settings and when.
 - Review role assignments quarterly.
 
 **Related reading**
 - See also: [Quickstart: send your first document](../get-started/quickstart.md)  
-- See also: [Create and send a document](../how-to/create-and-send-document.md)
+- See also: [Create and start a signing session](../how-to/create-and-send-document.md)  
+- See also: [Settings sets](./settings-sets.md)  
+- See also: [Template overlays](./template-overlays.md)  
+- See also: [Notification senders](./notification-senders.md)

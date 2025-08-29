@@ -1,94 +1,120 @@
 ---
 title: "Template overlays"
-description: "Create reusable overlays (participants + placed fields) and apply them to an uploaded file during session preparation."
-audience: ["admins"]
-keywords: ["e-sign", "templates", "overlays", "participants", "fields"]
+description: "Pre-placed participants and fields you can apply to new signing sessions."
+audience: ["admins", "senders"]
+keywords: ["template overlays", "participants", "fields", "reusable"]
 easyink_version: "web"
 last_reviewed: "2025-08-29"
-related: ["../how-to/create-and-send-document.md", "settings-sets.md", "roles-permissions.md", "notification-senders.md", "../troubleshooting/sending.md"]
+related: ["../how-to/create-and-send-document.md", "roles-permissions.md", "settings-sets.md", "../troubleshooting/sending.md"]
 ---
 
 # Create and manage template overlays
-**Applies to:** admins
+**Applies to:** admins (create/manage), senders (apply)
 
 ## Overview
-A **template overlay** predefines:
-- **Participants** (who signs)
-- **Placed fields** (Initials, Signature, Date, Checkbox, Free text, Full name, Date Time Signature)
+Use **template overlays** to save time on repeat documents (NDAs, onboarding packets, policy acks).  
+An overlay stores **participants** (and optional signing order) plus **pre-placed fields** mapped to page positions.  
+Senders then **apply** the overlay during session preparation right after they add a document.
 
-Overlays live under **Manage templates** and are **applied during session preparation** after you add a document.
+**When to use**
+- You send the same layout regularly.
+- You want consistent **Signature**, **Full name**, **Date**, and other fields.
+- You want to reduce mistakes from manual placement.
+
+> **Note:** Overlays don’t replace your org’s **settings set**. The **From** address, reminders, and expiration still come from the settings set assigned to the organization.
 
 ## Example first
-You send the same NDA weekly. Build an overlay **"NDA — Candidate"** with:
-- Participant: **Candidate** (Signer)
-- Fields: **Signature** on page 2, **Initials** on each page, **Full name** on page 1
+You routinely send an NDA that’s always 2 pages. Create the overlay **“NDA – Candidate”** with:
+- Participants: **Candidate** (order 1) and **Hiring Manager** (order 2)
+- Page 1: **Signature** (Candidate), **Date** (Candidate)
+- Page 2: **Signature** (Hiring Manager), **Date** (Hiring Manager)
 
-During a new session, upload the NDA, open the document menu, and choose **Apply template overlay**. Fields appear in the right places. Enter the Candidate's email and finalize.
+During a new session, upload the NDA and click **Apply template overlay → NDA – Candidate**. All fields appear in the right spots.
 
 ## Before you begin
-- **Role:** Admin with permission to manage templates/overlays (see [Roles and permissions](roles-permissions.md)).
-- **Access:** **Manage templates** (to create/edit overlays) and **New signing session** (to apply overlays).
-- **Inputs:** Overlay name, base file, participants, field placements.
-- **Environment:** Build and test in a non-prod tenant first.
+- **Roles:**  
+  - **Administrator** to create, edit, archive overlays.  
+  - **Standard User** to apply overlays in a session.
+- **Inputs:** A reference PDF (or an existing prepared session to “Save as template overlay”).
+- **Environment:** In non-prod, verify email/SMS allow-lists before testing invitations.
 
-## Create an overlay (from Manage templates)
-1. Go to **Manage templates**.
-2. (Optional) **Add folder** to organize overlays.
-3. Click **Create new template** → Name the overlay → **Create**.
-4. Click **Add document** (top-right) and upload the base file.
-5. **Add Participant** in the left panel and name the participant(s).
-6. Drag fields from the left palette onto pages (make sure the correct participant is selected).
-7. Click **Finalize** (bottom-right). The overlay is now available to apply.
+## Create a template overlay (from scratch)
+1. Go to **Template overlays** (left navigation).
+2. Click **Add New Template Overlay**.
+3. Enter **Name** and optional **Description**.
+4. (Optional) Define default **Participants** and signing **Order**.
+5. Upload a sample PDF (or choose a base) to place fields against the correct pages.
+6. Place fields for each **active participant** on the page thumbnails.
+7. Click **Save & Close** (keeps it **Draft**) or **Publish** to make it available to senders.
 
-## Apply an overlay during session preparation
-1. Start a **New signing session**.
-2. Click **Add document** and upload your file.
-3. In **UPLOADED DOCUMENTS**, open the document's menu (⋯) and choose **Apply template overlay**.
-4. Pick your overlay. Fields and participants are added to the session.
-5. Use **+ Add Myself** if you are also a participant; **Bulk Upload** is available when adding many participants/files (if enabled).
-6. Enter emails for the predefined participants and complete the session.
+> **Tip:** Use a stable, final PDF as the base. If page order changes later, placements may misalign.
 
-**Tip:** If you fine-tune placements ad-hoc and want to reuse them, use the same menu (⋯) and select **Save as template overlay**.
+## Create a template overlay from a prepared session
+1. Open an existing **Draft** session where you have already placed fields.
+2. Select **More actions (⋯) → Save as template overlay**.
+3. Name the overlay and review participant roles and field placements.
+4. Click **Publish**.
 
-## Edit or duplicate an overlay
-- From **Manage templates**, locate the overlay, click the **pencil** icon to edit, then **Finalize** again.
-- To create a variant (e.g., different field set), duplicate the overlay (if your build supports duplication) or **Save as template overlay** from a prepared session.
+> **Note:** If the document in the session has extra pages, remove unneeded placements before publishing.
 
-## UI reference (session + overlay)
-| UI label | Where | Purpose |
-|---|---|---|
-| **Add Participant** | Overlay editor | Create a participant. |
-| **Add document** | Overlay editor / Session | Attach/replace the base file. |
-| **Bulk Upload** | Session | Upload participants/files in bulk (if enabled). |
-| **+ Add Myself** | Session | Add yourself as a participant quickly. |
-| **Apply template overlay** | Session → Uploaded documents (⋯) | Apply an existing overlay to the uploaded file. |
-| **Save as template overlay** | Session → Uploaded documents (⋯) | Save current placements as a reusable overlay. |
-| **Finalize** | Overlay editor | Publish the overlay for use. |
+## Apply a template overlay during a session
+1. Create a new signing session and click **+ Add document** to upload the PDF.
+2. In the document area, choose **Apply template overlay**.
+3. Pick the overlay by name.  
+   - If the overlay defines participants, they will be added automatically.  
+   - If your tenant allows locking, locked placements can’t be moved by senders.
+4. Review placements and make minor adjustments if needed.
+5. **Finalize** and **Start now** when ready.
+
+> **Tip:** If an overlay almost fits, adjust the fields and then **Save as template overlay** to create a variant.
+
+## Edit, duplicate, or archive an overlay
+- **Edit:** Update participants or field placements and **Publish** again.  
+- **Duplicate:** Create a variant (e.g., different participant order).  
+- **Archive:** Hides the overlay from pickers. Existing sessions already using it are unaffected.
+
+> **Caution:** Publishing changes affects **future** sessions where the overlay is applied. It does not change already-started sessions.
+
+## Field and behavior reference
+| Item | Description |
+|---|---|
+| **Name** | Display name in pickers (e.g., *NDA – Candidate*). |
+| **Description** | Optional internal notes about usage or scope. |
+| **Participants** | Optional defaults (First Name/Last Name left blank; **Email** filled at send time). |
+| **Order** | Optional signing order (1..n). |
+| **Fields** | Pre-placed items like **Signature**, **Full name**, **Date**, **Initials**, etc. |
+| **Page mapping** | Placements are bound to page index and coordinates. Changes in page order or scale may misalign. |
+| **Locking** | If enabled by your tenant, admins can lock placements to prevent sender edits. |
+| **Status** | **Draft**, **Published**, **Archived**. Only **Published** overlays are visible to senders. |
 
 ## Troubleshooting
 | Symptom | Cause | Fix | Time to verify |
 |---|---|---|---|
-| **Apply template overlay** not visible | No document uploaded yet | Click **Add document**, then open the document menu (⋯) | Immediate |
-| Overlay fields apply to the wrong person | Wrong participant selected during design | Re-edit overlay and reassign fields; **Finalize** | Immediate |
-| Overlay doesn’t appear in the picker | Overlay still **Draft** | Open overlay and **Finalize** | Immediate |
-| Sender can’t modify fields after applying | Overlay locks placements by design | Create a flexible variant or edit ad-hoc and **Save as template overlay** | Immediate |
+| Overlay not visible to senders | Status is **Draft** or **Archived** | **Publish** the overlay. | Immediate |
+| Fields look shifted | Source PDF changed (page size/order) | Re-align fields; re-publish. Keep a canonical base PDF. | 2–5 min |
+| Can’t move fields after apply | Locking enabled by admin | Edit the overlay (admin) or create a duplicate overlay with unlocked fields. | Immediate |
+| Wrong participant on a field | Active participant switched during placement | Reassign the field to the correct participant in the overlay; re-publish. | 2–5 min |
+| “Apply template overlay” not shown | Feature disabled in tenant or wrong permission | Ask an **Administrator** to enable or grant permission to **Apply signing session template overlay**. | Immediate |
+| Overlay applies but no participants added | Overlay defines only placements | Add participants first in the session, or edit the overlay to include participants. | 1–2 min |
 
 ## FAQs
-**Can overlays include multiple participants and many pages of fields?**  
-Yes. Add all participants you need and place fields across pages.
+**Do overlays send emails or set expirations?**  
+No. Those come from your org’s **settings set**.
 
-**Can I reuse overlays across different documents?**  
-Overlays are tied to page geometry; reuse only with the same or equivalent base file.
+**Can I restrict who can edit overlays?**  
+Yes. Only **Administrators** can create/edit/archive overlays. **Standard Users** can apply them.
 
-**Do changes to an overlay affect already prepared sessions?**  
-No. Edits apply to **future** sessions where the overlay is applied.
+**What happens to sessions if I archive an overlay?**  
+Existing sessions aren’t changed. The overlay just disappears from pickers for future sends.
+
+**Can overlays include optional fields?**  
+Yes. Optionality is set on the field when you place it in the overlay.
 
 ## API
 Not applicable today. *(Add cURL/Node/Python once API is public.)*
 
 **Related reading**
-- [Create and send a document](../how-to/create-and-send-document.md)
-- [Settings sets](settings-sets.md)
-- [Roles and permissions](roles-permissions.md)
-- [Notification senders](notification-senders.md)
-- [Troubleshooting sending](../troubleshooting/sending.md)
+- See also: [Create and start a signing session](../how-to/create-and-send-document.md)  
+- See also: [Roles and permissions](./roles-permissions.md)  
+- See also: [Settings sets](./settings-sets.md)  
+- See also: [Troubleshooting: sending and signing](../troubleshooting/sending.md)

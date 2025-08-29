@@ -1,98 +1,85 @@
 ---
 title: "Create and start a signing session"
-description: "Upload a document, add participants, place fields, finalize, and start a signing session."
-audience: ["senders", "admins"]
-keywords: ["signing session", "send document", "participants", "fields"]
+description: "Upload your document, add participants, place fields, finalize, and start."
+audience: ["senders"]
+keywords: ["e-sign", "signing session", "participants"]
 easyink_version: "web"
-last_reviewed: "2025-08-28"
+last_reviewed: "2025-08-29"
 related: ["../get-started/quickstart.md", "../admin/roles-permissions.md"]
 ---
 
 # Create and start a signing session
-
-**Applies to:** senders, admins
+**Applies to:** senders
 
 ## Overview
-Use a signing session to collect signatures on one or more documents. This guide follows the current UI flow and exact labels you’ll see.
+Use this guide to send a document for e-signature. You will:
+1) create a session, 2) add participants, 3) upload your PDF and place fields, 4) **Finalize**, and 5) **Start now**.
+
+**Tip:** If you send the same layout often, set up a **template overlay** so you don’t have to place fields every time.
 
 ## Before you begin
-- **Role:** Standard User or Administrator.
-- **Environment:** Use **Production** at `https://easyink.io`. If your organization has a customer-safe **test environment**, use the URL provided by your administrator.
-- **Document:** PDF ready for signing.
-
-**Note:** The email **From** address is set by your organization’s **settings set**. Senders can’t change it during the send flow.
-**Tip:** For many recipients, use **Bulk Upload** at the top of the session editor.
+- **Role required:** **Standard User** or **Administrator**.
+- **Access:** EasyInk web app (Production) or your org’s test URL.
+- **Inputs:** A prepared PDF (flattened forms recommended).
+- **Optional:** A **template overlay** and a configured **notification sender**.
+- **Environment note:** In non-prod, ask an admin about outbound email/SMS allow-lists.
 
 ## Steps
 
-1. **Create the session**
-   - From the left nav, click **New signing session**  
-     *or* on **Home**, click **Start new signing session**.
-   - In **Create new signing session**, enter a **Subject** (example: `2025 Handbook Signing – Mikhailova`) and click **Create**.
+### 1) Create a session
+1. Go to **Home** → click **New signing session**.
+2. In **Create new signing session**, enter a clear **Subject** (for example, `Q3 NDA – S. Zhang`).
+3. Click **Create**.
 
-2. **Add a participant**
-   - Click **Add Participant**.
-   - In **Add New Participant**, fill **First Name**, **Last Name**, **Email**.  
-     (Optional) Choose delivery method (**email** and/or **sms/text**), enter **Phone**, and set **Language of the signing session**.
-   - Click **Save**.
-   - **Tip:** If you need to sign as well, click **Add Myself**.
+### 2) Add participants
+1. Click **Add Participant**.
+2. Fill **First Name**, **Last Name**, **Email**.  
+   (Optional) Choose delivery method (**Email** and/or **SMS**), add **Phone**, and set **Language**.
+3. Click **Save**. Repeat for additional participants.
+4. (Optional) Set **Signing order** if one participant must sign before others.
 
-3. **Add the document**
-   - Click **+ Add document** (top right of the editor) and choose your PDF.
-   - The file appears under **UPLOADED DOCUMENTS** with a list of **Page** thumbnails.
+> **Tip:** Keep participant names consistent with your HR/CRM to simplify audits.
 
-4. **Place fields**
-   - Select the correct **participant** in the left panel.
-   - In the page list on the right, open the target page (e.g., **Page 14**).
-   - From the left field palette, drag **Full name**, **Signature**, and **Date** onto the document.
-   - **Note:** If you add more recipients later, ensure the intended recipient is active when placing each field.
+### 3) Upload your document
+1. Click **+ Add document** and select your PDF.
+2. Wait for the upload to finish. The page thumbnails appear on the left.
 
-5. **Finalize**
-   - Click **Finalize** (bottom right).
+> **Note:** If available in your tenant, click **Apply template overlay** to preload participants and fields.
 
-6. **Start the session**
-   - When prompted **Your signing session is ready**, click **Start now**.  
-     (Or choose **Start later** to keep it in **Ready to start**.)
+### 4) Place fields
+1. Select the **active participant** in the left panel.
+2. Drag fields onto the page (for example, **Full name**, **Signature**, **Date**).
+3. Repeat for each participant and page that needs input.
 
-7. **Track status**
-   - Go to **Home** and use the status filters:
-     - **In progress** while recipients are signing.
-     - **Finished** once all required actions are complete.
+> **Tip:** Place at least one **Signature** field for each required signer. Use **Date** for signing date, not text boxes.
 
-8. **Download the signed documents**
-   - Open the session under **Finished**.
-   - Click **Download All** to get the signed, validated PDF bundle.  
-   - You’ll see the *Validated by Entrust* badge in the session view.
+### 5) Finalize and start
+1. Click **Finalize** to lock the preparation.
+2. In the prompt, choose **Start now** to send invitations immediately.  
+   Or choose **Start later** to keep the session in **Ready to start**.
 
-**Caution:** If you must change field placement after starting, you need the **Change signing session** permission. Otherwise, void and recreate the session.
+> **Caution:** Starting a session sends notifications to participants based on your **settings set** and **notification sender**. Double-check participant emails before you start.
 
----
-
-## Example: manual fields on a PDF (one common path)
-
-1. **Home → New signing session** → set **Subject** `2025 Handbook Signing – Mikhailova` → **Create**.  
-2. **Add Participant** → First Name `Svetlana`, Last Name `Mikhailova`, Email `smikhailova@…` → delivery **email** → **Save**.  
-3. **+ Add document** → choose `Handbook RU.pdf`.  
-4. In the pages list, open **Page 14** → drag **Full name**, **Signature**, **Date** to their places.  
-5. **Finalize** → prompt **Your signing session is ready** → **Start now**.  
-6. **Home → In progress** to monitor; when complete, find it under **Finished**.  
-7. Open the finished session → **Download All** to retrieve the signed and **validated** document.
-
----
+## Track progress and manage
+- Use status filters on **Home** (**Draft**, **Ready to start**, **In progress**, **Finished**).
+- Open a session to **Resend** invitations, view activity, or (with permission) **Void** the session.
+- After all participants sign, click **Download All** to get the signed PDF bundle and audit trail.
 
 ## Troubleshooting
 
-| Symptom | Likely cause | Fix | Time to verify |
+| Symptom | Cause | Fix | Time to verify |
 |---|---|---|---|
-| **Start now** prompt doesn’t appear | Session not finalized | Click **Finalize** first. | Immediate |
-| **Finalize** is disabled | Required fields missing for at least one participant | Place all required fields; check the active participant. | Immediate |
-| Fields applied to the wrong person | Wrong participant selected while placing fields | Select the intended participant in the left panel and re-place the fields. | Immediate |
-| Recipient didn’t get email | Typo or spam filtering | Verify the email; **Resend** from the session view; ask recipient to check spam. | 1–5 min |
-| Can’t edit an active session | Missing permission | Ask an admin for **Change signing session** or void and recreate. | Immediate |
+| **Finalize** is disabled | Missing required fields for one or more participants | Select each participant and page; add at least one required field; try Finalize again. | 1–2 min |
+| **Start now** doesn’t appear after Finalize | Page not refreshed or you closed the prompt | Reopen the session and click **Start now** from the banner; or finalize again if you added changes. | 1–2 min |
+| Participant didn’t get invite | Typo, spam filtering, or non-prod allow-list | Correct the email and **Resend**; ask the participant to check Spam/All Mail; in test, use an allow-listed domain. | 1–5 min |
+| Fields show the wrong participant name | Placed while the wrong participant was active | Delete/move those fields with the correct participant selected; re-Finalize. | 2–5 min |
+| Can’t edit after starting | Session state or missing permission | Ask an **Administrator** to use **Change signing session** (if enabled) or **Void** and recreate. | 2–10 min |
 
 ## API
-**Not applicable.** EasyInk currently supports web flows only.
+Not applicable today. (Add cURL/Node/Python once API is public.)
 
 **Related reading**
 - See also: [Quickstart: send your first document](../get-started/quickstart.md)  
-- See also: [Roles and permissions](../admin/roles-permissions.md)
+- See also: [Roles and permissions](../admin/roles-permissions.md)  
+- See also: [Template overlays](../admin/template-overlays.md)  
+- See also: [Troubleshooting: sending and signing](../troubleshooting/sending.md)

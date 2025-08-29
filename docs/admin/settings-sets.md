@@ -37,7 +37,7 @@ You manage two orgs—**Sales** and **HR**—that should send from the same mail
   - Send from email name: **EasyInk Team**
   - Send from email address: **signing@yourorg.com**
   - SMS hours: **08:00–21:00**
-- **Associate organizations:** Sales, HR
+- **Associate organizations:** Sales, HR  
 - **Finalize**
 
 Both orgs will send emails from `signing@yourorg.com`. If you later change the sender, new sessions from both orgs use the new address.
@@ -85,7 +85,7 @@ Both orgs will send emails from `signing@yourorg.com`. If you later change the s
 | Add hours to sign by time | integer (0–23) | Yes | 0 | Hour/minute of the deadline on the target day. |
 | Send from email name | text | Yes | — | Friendly **From** name. |
 | Send from email address | email | Yes | — | **From** address; applies to **all organizations** using this set. |
-| Send documents in e-mail attachments | checkbox | No | Off | Include signed docs as attachments if allowed by policy. |
+| Send documents in **email** attachments | checkbox | No | Off | Include signed docs as attachments if allowed by policy. |
 | Send SMS from number | select | No | — | Originating number for SMS notifications. |
 | Allowed time for sending SMS notifications | time range | No | 08:00–21:00 | Quiet-hours window for SMS. |
 | Templates | links | No | Platform defaults | Edit text for invites, reminders, completed, expired, voided, terms, instructions. |
@@ -94,11 +94,11 @@ Both orgs will send emails from `signing@yourorg.com`. If you later change the s
 ## Troubleshooting
 | Symptom | Cause | Fix | Time to verify |
 |---|---|---|---|
-| Emails show an unexpected **From** | Your org is associated to a different settings set | Open the set and check **Associated organizations**; reassign the org if needed | Immediate |
-| Sender can’t change the **From** address in the send flow | Sender selection is controlled by the **org’s settings set** | Update the **Send from** fields in the set, then **Finalize** | Next email |
-| Set is **Draft** and not in effect | Not **Finalized** or no orgs associated | Add **Associated organizations**, then **Finalize** | Immediate |
-| Sessions expire too early/late | Wrong time zone or days/hours | Adjust **Time zone** and expiration fields; resend | Immediate after resend |
-| SMS not delivered during the day | Quiet hours too tight | Widen **Allowed time** range | Next SMS window |
+| Emails show an unexpected **From** | Your org is associated to a different settings set | Open the set and check **Associated organizations**; reassign the org if needed. | Immediate |
+| Sender can’t change the **From** address in the send flow | Sender selection is controlled by the **org’s settings set** | Update the **Send from** fields in the set, then **Finalize**. | Next email |
+| Set is **Draft** and not in effect | Not **Finalized** or no orgs associated | Add **Associated organizations**, then **Finalize**. | Immediate |
+| Sessions expire too early/late | Wrong time zone or days/hours | Adjust **Time zone** and expiration fields; resend. | Immediate after resend |
+| SMS not delivered during the day | Quiet hours too tight | Widen **Allowed time** range. | Next SMS window |
 
 ## FAQs
 **Can one settings set be used by multiple organizations?**  
@@ -117,8 +117,8 @@ No. Edits apply to **future** sessions.
 Not applicable today. *(Add cURL/Node/Python once API is public.)*
 
 **Related reading**
-- [Create and send a document](../how-to/create-and-send-document.md)
-- [Roles and permissions](roles-permissions.md)
-- [Notification senders](notification-senders.md)
-- [Environments](environments.md)
-- [Troubleshooting sending](../troubleshooting/sending.md)
+- See also: [Create and start a signing session](../how-to/create-and-send-document.md)
+- See also: [Roles and permissions](roles-permissions.md)
+- See also: [Notification senders](notification-senders.md)
+- See also: [Environments (internal)](environments.md)
+- See also: [Troubleshooting: sending and signing](../troubleshooting/sending.md)

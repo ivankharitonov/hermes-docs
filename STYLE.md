@@ -1,116 +1,144 @@
-# Style Guide
+---
+title: "EasyInk Docs: Style Guide"
+description: "Editorial, formatting, and structure rules for GitHub-ready Markdown."
+audience: ["developers", "admins"]
+keywords: ["style", "editorial", "markdown", "terminology"]
+easyink_version: "web"
+last_reviewed: "2025-08-29"
+related: ["CONTRIBUTING.md", "docs/glossary.md", "docs/get-started/quickstart.md"]
+---
 
-A shared set of rules to keep EasyInk docs clear, consistent, and fast to use.
+# EasyInk Docs: Style Guide
 
-## 1) Voice & tone
-- **Direct, second person.** Speak to the reader: “you,” “your team.”
-- **Active voice.** “Click **Finalize**,” not “Finalization is performed.”
-- **Present tense.** Describe the current UI.
-- **Short sentences.** Prefer 10–18 words.
-- **No fluff.** Remove marketing language. Prefer facts and steps.
+This guide keeps our docs consistent, fast to read, and easy to maintain.
 
-## 2) Information design
-- **Examples first, then explanations.**
-- **Task-oriented.** Prioritize what the user can do next.
-- **One H1 per page.** Sentence case: “Create and start a signing session.”
-- **Scannable sections.** Use concise headings and tables for params/errors.
+## Principles
+- **Audience-first.** Write for senders, admins, developers, and signers. Call out who it applies to.
+- **Examples first.** Start with a runnable example, then explain concepts.
+- **Short, active, second person.** “You click **Finalize**…” Keep sentences under ~20 words.
+- **Task-oriented.** Prioritize steps the reader can complete right now.
+- **UI-true.** Use the exact UI labels and capitalization.
+- **No marketing fluff.** Avoid superlatives; state facts and limits.
 
-## 3) File & heading conventions
-- **Paths:** `docs/<section>/<page>.md` (lowercase, hyphenated filenames).
-- **Headings:** sentence case (`## Before you begin`), not Title Case.
-- **Anchors:** rely on GitHub’s auto-generated anchors; avoid custom IDs.
+## Canonical terminology (use exactly)
+| Use | Don’t use | Notes |
+|---|---|---|
+| **Participant** / **participants** | recipient(s) | “Recipient” may appear in legacy text; replace with **participant**. |
+| **Email** | e-mail, E-mail | Lowercase “email” unless starting a sentence. |
+| **SMS** | sms, text, sms/text | Use “SMS” for the channel; “text message” only in prose when needed. |
+| **Finalize** | Finalise, finalization step | Button label; bold it. |
+| **Start now** / **Start later** | Start, send now | Use the exact prompt labels. |
+| **Download All** | download bundle, export | Button label; bold it. |
+| **First Name**, **Last Name** | First name, Last name | Match UI capitalization for field labels. |
+| **Settings set** | settings-set, settingsset | One per organization; can be shared across orgs. |
+| **Template overlay** | template, overlay template (unless UI) | “Template overlay” is the doc term; match UI where it appears. |
+| **Notification sender** | from address, mailer | The configured From identity. |
+| **Signing session** | envelope, case | Our primary container term. |
 
-## 4) Frontmatter (docs pages only)
-Every file under `docs/` starts with YAML frontmatter and ends with **Related reading**.
+> **Tip:** If UI labels change, update this table and run a find/replace sweep across the repo.
 
+## Formatting rules
+- **Markdown only.** No HTML in body content. Use Mermaid for diagrams.
+- **Frontmatter required.** Every page starts with YAML frontmatter (see template below).
+- **Headings.** One `#` H1 per page (matches the page title). Use `##` for sections, `###` for subsections.
+- **Bold UI labels.** Buttons, menu items, fields: **Finalize**, **Start now**, **+ Add document**.
+- **Lists over text walls.** Prefer numbered steps for procedures.
+- **Tables for references.** Use compact tables for options, statuses, error matrices.
+- **Callouts.** Use exactly:
+  - **Note:** context or side conditions.
+  - **Tip:** productivity win.
+  - **Caution:** risks or irreversible actions.
+
+## Link style
+- **Relative links only.** `../admin/settings-sets.md`
+- **Descriptive anchors.** Avoid “click here.” Prefer “See [Template overlays](../admin/template-overlays.md).”
+- **No dead ends.** Every page ends with **Related reading** that suggests the next action.
+
+## Frontmatter template
 ```yaml
 ---
-title: "Create and start a signing session"
-description: "Upload a document, add participants, place fields, finalize, and start a signing session."
-audience: ["senders", "admins"]
-keywords: ["signing session", "fields", "participants"]
+title: "<Concise page title>"
+description: "<One-sentence value statement>"
+audience: ["senders" | "admins" | "developers" | "signers"]
+keywords: ["e-sign", "signing sessions"]
 easyink_version: "web"
 last_reviewed: "YYYY-MM-DD"
-related: ["../get-started/quickstart.md", "../admin/roles-permissions.md"]
+related: ["../path/to/related-one.md", "../path/to/related-two.md"]
 ---
 ```
 
-**Tip:** Update `last_reviewed` whenever you touch the page.
+## Page types and required elements
 
-## 5) UI text & formatting
-- **UI labels:** bold (**Add Participant**, **Finalize**, **Start now**).
-- **Navigation paths:** `Home → New signing session` (use `→`).
-- **Fields:** capitalize as in UI (First Name, Email).  
-- **Keyboard:** `Ctrl+K`, `Cmd+K` (inline code).
-- **Code blocks:** use fenced code with language (```bash, ```json, ```mermaid).
-- **Callouts:** start with bold label on its own line.  
-  - **Note:** context or nuance.  
-  - **Tip:** productivity win.  
-  - **Caution:** risks or irreversible actions.
+### Quickstart
+- Goal statement.
+- 3–5 short sections with numbered steps.
+- Troubleshooting table for top 3 issues.
+- **Related reading**.
 
-## 6) Environments
-- **Public docs:** mention **Production** only (`https://easyink.io`).  
-- If a customer-safe **test environment** exists, say “use the URL provided by your administrator” (do **not** print staging URLs).
-- **Internal pages** (under `docs/admin/`): it’s fine to document Staging/Test with clear data-safety warnings.
+### How-to
+- “Applies to” line.
+- **Overview**, **Before you begin**, **Steps**, **Troubleshooting**, **API** (TBD today), **Related reading**.
+- Use exact UI paths and labels.
 
-**Caution:** Never instruct readers to upload real PII to non-production.
+### Concept
+- **Example first** (short scenario).
+- **How it works** with entities and lifecycle.
+- **Data model** (Mermaid).
+- **Related reading**.
 
-## 7) Tables (preferred patterns)
+### Admin
+- **Overview**, **Before you begin**, **Steps**, **Fields reference**, **Troubleshooting**, **FAQs**, **Related reading**.
+- Emphasize role/permission prerequisites.
 
-**Parameters / options**
+### Troubleshooting
+- **Quick diagnostic** checklist.
+- Symptom → Cause → Fix → Time to verify table.
+- Environment notes when relevant.
+- **Related reading**.
 
-| Name | Type | Required | Default | Description | Example | Notes |
-|---|---|---|---|---|---|---|
-| Language | string | No | org default | Language used in the signing session. | `en` | Affects invitation and UI text. |
+## Screens, diagrams, and assets
+- Favor **steps + labels** over screenshots to reduce UI drift.
+- Store diagrams in `docs/_assets/diagrams/`.
+- Mermaid is preferred for flows and models.
+- If you must include a screenshot, keep it small and crop to the relevant area.
 
-**Errors**
+## Style mechanics
+- **Tense/voice:** Present, active (“Click **Finalize**”, “Open **Home**”).
+- **Capitalization:** Match UI. Sentence case elsewhere.
+- **Numbers:** Use numerals (1, 2, 3). Use `1–5 min` for time-to-verify.
+- **Dates:** Use ISO `YYYY-MM-DD` in frontmatter and examples where appropriate.
+- **File paths:** Use code ticks for paths and UI items only when clarity improves.
 
-| Status | Error code | Message | When it happens | How to fix |
-|---|---|---|---|---|
-| 400 | missing_fields | Required fields not placed for a participant. | User finalized without all fields. | Place required fields, then finalize. |
+## Content hygiene
+- No secrets, tokens, or internal endpoints.
+- Use fake data in examples (`alex@example.com`, `+15551234567`).
+- For non-prod, note allow-lists and purge windows.
+- When adding **TBD**, include **owner** and **due date**.
 
-**Troubleshooting**
+## Lint & review aids
+- Run a “terminology sweep” before PR:
+  - `recipient|recipients` → `participant|participants`
+  - `e-mail` → `email`
+  - `sms|sms/text` → `SMS`
+- Click-test all relative links.
+- Ensure **Related reading** exists and is relevant.
+- Bump `last_reviewed` on touched pages.
 
-| Symptom | Likely cause | Fix | Time to verify |
-|---|---|---|---|
-| **Finalize** disabled | Missing fields | Place required fields per participant. | Immediate |
+## Examples to copy
 
-## 8) Code & examples
-- **Minimal and runnable.** Prefer a single end-to-end example per page.
-- **Secrets:** never hard-code. Use placeholders (`YOUR_ORG_SENDER`).
-- **Multi-language:** If/when API exists, show **cURL**, **Node**, **Python** tabs; keep parity.
-- **JSON:** compact but readable; include only necessary fields.
-
-## 9) Diagrams & media
-- **Mermaid diagrams** for models and flows.
-- **Alt text** or a caption explaining purpose.
-- Avoid screenshots that show non-prod URLs in public docs. If unavoidable, add “Screenshot from a test environment.”
-
-## 10) Accessibility & inclusivity
-- Don’t rely on color alone to convey meaning.
-- Write clear link text (“See also: Roles and permissions”), not “click here.”
-- Avoid idioms and culture-specific slang.
-
-## 11) Dates, times, numbers
-- **Dates:** `2025-08-28` (ISO-like) or “August 28, 2025.”
-- **Timezones:** specify explicitly if relevant (org default is Europe/Tallinn).
-- **Numbers:** use digits; include units (MB, pages).
-
-## 12) Page skeletons
-
-**How-to page**
+### How-to skeleton
 ```markdown
-# <Action>: <object>
-
-**Applies to:** roles
+# <Action verb>: <object>
+**Applies to:** senders | admins | developers | signers
 
 ## Overview
-One-paragraph purpose.
+<when and why>
 
 ## Before you begin
 - Roles
 - Access
 - Inputs/files
+- Environment note (if relevant)
 
 ## Steps
 1. ...
@@ -121,48 +149,39 @@ One-paragraph purpose.
 |---|---|---|---|
 
 ## API
-Not applicable. (Or: cURL/Node/Python tabs)
+Not applicable today. (Add cURL/Node/Python once API is public.)
 
 **Related reading**
 - See also: ...
 ```
 
-**Concept page**
+### Concept skeleton
 ```markdown
-# Concept: <name>
+# <Concept name>
 
 ## Example first
-Short example steps.
+<short example flow>
 
 ## How it works
 - Entities
-- States
+- Lifecycle/states
+- Security/permissions
 
 ## Data model
 ```mermaid
 classDiagram
-...
+  class SigningSession { id status created_at ... }
+  class Document { id name ... }
+  class Participant { id name email order ... }
+  SigningSession "1" --> "*" Document
+  SigningSession "1" --> "*" Participant
 ```
 
 **Related reading**
 - See also: ...
 ```
 
-## 13) Review checklist (Definition of Done)
-- Screens and labels match the current product.
-- Steps are task-complete and tested.
-- Internal links work; no dead ends.
-- “Examples first” pattern followed.
-- Tables for parameters and errors present when relevant.
-- **Related reading** section exists and is populated.
-- `last_reviewed` updated.
-- Sensitive env details removed from public pages.
-
-## 14) Terminology (canonical)
-- Signing session, Document, Participant, Template overlay, Notification sender, Settings set, Finalize, Start now, Void, Download All.
-
 **Related reading**
-- See also: `docs/get-started/quickstart.md`  
-- See also: `docs/how-to/create-and-send-document.md`  
-- See also: `docs/admin/environments.md`  
-- See also: `docs/admin/roles-permissions.md`
+- See also: [Contributing](CONTRIBUTING.md)  
+- See also: [Glossary](docs/glossary.md)  
+- See also: [Quickstart: send your first document](docs/get-started/quickstart.md)

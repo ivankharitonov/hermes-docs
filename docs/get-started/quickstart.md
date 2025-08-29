@@ -4,56 +4,47 @@ description: "Start a signing session and track status in under 10 minutes."
 audience: ["senders", "admins"]
 keywords: ["e-sign", "signing session", "quickstart"]
 easyink_version: "web"
-last_reviewed: "2025-01-27"
-related: ["../how-to/create-and-send-document.md", "../admin/roles-permissions.md"]
+last_reviewed: "2025-08-29"
+related: ["../how-to/create-and-send-document.md", "../admin/roles-permissions.md", "../troubleshooting/sending.md"]
 ---
 
 # Quickstart: send your first document
 
-**Goal:** upload a document, add recipients, start a signing session, and see its status.
+> **Goal:** upload a document, add participants, start a signing session, and see its status.
 
 ## Prerequisites
-- An EasyInk account with **Standard User** or **Administrator** role.
-- **Environment:** Use **Production** at `https://easyink.io`. If your organization has a customer-safe **test environment**, use the URL provided by your administrator.
-- A PDF to sign.  
-**Note:** If your org enforces SSO, use **OneLogin** on the sign-in page.
+- EasyInk account with **Standard User** or **Administrator** role.
+- Environment: Production at `https://easyink.io` (or your org’s test URL).
 
-## 1. Sign in
-1. Open `https://easyink.io`.
-2. Enter **Username** and **Password**, or choose **OneLogin**.
-3. Click **Login**.
+## 1. Create a signing session
+1. Go to **Home**.
+2. Click **New signing session**.
+3. In **Create new signing session**, enter a **Subject** (example: `2025 Handbook Signing – Mikhailova`) and click **Create**.
 
-**Tip:** If you can’t sign in, contact your admin to confirm your role and SSO access.
-
-## 2. Start a new signing session
-1. From the left navigation, click **New signing session**  
-   *or* on **Home**, click **Start new signing session**.
-2. In **Create new signing session**, enter a **Subject** (example: `2025 Handbook Signing – Mikhailova`) and click **Create**.
-
-## 3. Add recipients
+## 2. Add participants
 1. Click **Add Participant**.
 2. Fill **First Name**, **Last Name**, **Email**.  
-   (Optional) Choose delivery method (**email** and/or **sms/text**), add **Phone**, and set **Language**.
+   (Optional) Choose delivery method (**Email** and/or **SMS**), add **Phone**, and set **Language**.
 3. Click **Save**. Add more participants as needed.
-4. (Optional) Set a **signing order** if some recipients must sign before others.
+4. (Optional) Set a **Signing order** if some participants must sign before others.
 
-**Note:** Your admin controls whether you can apply template overlays and which notification senders are available.
+**Note:** Your admin controls whether you can apply **template overlays** and which **notification senders** are available.
 
-## 4. Add your document and place fields
+## 3. Add your document and place fields
 1. Click **+ Add document** and select your PDF.
 2. In the page list, open the target page (e.g., **Page 14**).
-3. Drag **Full name**, **Signature**, and **Date** fields into position for the active recipient.
+3. Drag **Full name**, **Signature**, and **Date** fields into position for the active participant.
 
-**Tip:** Ensure the intended recipient is selected in the left panel before placing fields.
+**Tip:** Ensure the intended participant is selected in the left panel before placing fields.
 
-## 5. Finalize and start
+## 4. Finalize and start
 1. Click **Finalize**.
 2. When prompted **Your signing session is ready**, click **Start now**.  
    (Or choose **Start later** to keep it in **Ready to start**.)
 
-## 6. Track status
+## 5. Track status
 Use the status filters on **Home**:
-- **In progress** while recipients are signing.
+- **In progress** while participants are signing.
 - **Finished** after all required actions are complete.
 
 **Tip:** Click a session to view details, resend notifications, or (with permission) **Void** the session.
@@ -61,9 +52,9 @@ Use the status filters on **Home**:
 ## Troubleshooting
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| Recipient did not receive email | Spam filtering or typo | Verify email address; ask recipient to check spam; resend notification. |
+| Participant did not receive email | Spam filtering or typo | Verify the email address; ask the participant to check Spam/All Mail; **Resend** the invitation. |
 | **Start now** does not appear | Session not finalized | Click **Finalize** first. |
-| Can’t edit after start | Permission or session state | Ask an **Administrator** to enable **Change signing session** or void and recreate. |
+| Can’t edit after start | Permission or session state | Ask an **Administrator** to enable **Change signing session** or **Void** and recreate. |
 
 ## Next steps
 - Create a reusable **template overlay** so senders don’t manually place fields.
@@ -71,4 +62,5 @@ Use the status filters on **Home**:
 
 **Related reading**
 - See also: [Create and start a signing session](../how-to/create-and-send-document.md)  
-- See also: [Roles and permissions](../admin/roles-permissions.md)
+- See also: [Roles and permissions](../admin/roles-permissions.md)  
+- See also: [Troubleshooting: sending and signing](../troubleshooting/sending.md)

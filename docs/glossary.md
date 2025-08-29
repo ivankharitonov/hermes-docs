@@ -1,86 +1,120 @@
 ---
 title: "Glossary"
-description: "Clear definitions of EasyInk terms used across the docs."
+description: "Shared terms for EasyInk so everyone speaks the same language."
 audience: ["senders", "admins", "developers", "signers"]
 keywords: ["glossary", "terminology", "definitions"]
 easyink_version: "web"
-last_reviewed: "2025-01-27"
-related: ["./get-started/quickstart.md", "./how-to/create-and-send-document.md", "./admin/roles-permissions.md"]
+last_reviewed: "2025-08-29"
+related: ["docs/get-started/quickstart.md", "docs/how-to/create-and-send-document.md", "docs/admin/roles-permissions.md", "docs/admin/template-overlays.md", "docs/admin/settings-sets.md", "docs/admin/notification-senders.md"]
 ---
 
 # Glossary
 
-Short, precise definitions of words you'll see in the UI and docs.
+Use these definitions across product, docs, and support. Terms match current UI labels.
 
 ## Core objects
+
 - **Signing session**  
-  The container for documents, participants, settings, and status. You create it, place fields, **Finalize**, and **Start**.
+  Container that holds **documents**, **participants**, **fields**, and **status**. You prepare it, **Finalize**, then **Start now** (or **Start later**).
+
+- **Participant** *(canonical; sometimes called “recipient”)*  
+  A person who signs. You provide **First Name**, **Last Name**, **Email**, optional **Phone** and **Language**. Ordering is optional.
 
 - **Document**  
-  A file you upload to be signed (for example, a PDF).
-
-- **Participant**  
-  A person asked to sign. You add their **First name**, **Last name**, **Email**, and (optionally) **Phone** and **Language**.
-
-## Configuration
-- **Template overlay**  
-  A reusable set of fields pre-placed on a document layout. Overlays save time and reduce placement errors.
-
-- **Notification sender**  
-  The "From" identity shown on invitation emails. Admins set it so participants recognize your organization.
-
-- **Settings set**  
-  A preset of sending options such as reminders and expiration. Apply it to a session for consistent behavior.
-
-- **Signing order**  
-  The sequence participants must follow. If set, later signers can't act until earlier signers finish.
-  
-  - **Settings set:** Org-level defaults for sending (time zone, expiry, sender, SMS rules, templates). Exactly **one** settings set per organization. One set can be **shared** by multiple orgs.
-- **Template overlay:** A reusable layout of **participants** and **placed fields**. Created under **Manage templates** and **applied during session preparation** from **Uploaded documents → ⋯ → Apply template overlay**.
-
-
-## Actions and states
-- **Finalize**  
-  Locks field placement and prepares the session to start.
-
-- **Start now / Start later**  
-  After you **Finalize**, choose **Start now** to send invitations immediately, or **Start later** to keep the session in **Ready to start**.
-
-- **Resend**  
-  Sends another invite to a participant. Useful after email corrections or spam issues.
-
-- **Void**  
-  Cancels a session. Use when you must stop signing. Voided sessions can't be restarted.
-
-## Files and outputs
-- **Uploaded documents**  
-  The list of files attached to a session. You can add, remove, and reorder before finalizing.
+  The PDF you upload to be signed.
 
 - **Field**  
-  A required input placed on a document page (for example, **Signature**, **Full name**, **Date**). Fields are placed for the **active participant**.
+  A required or optional input placed on a page (for example, **Signature**, **Full name**, **Date**, **Initials**). Placed for the **active participant**.
+
+- **Template overlay**  
+  Reusable set of participants and pre-placed fields bound to page positions. Applied during session preparation.
+
+- **Settings set**  
+  Org-level defaults: **From** name/address (via notification sender), expiration, time zone, SMS rules, and notification templates. Exactly **one** settings set applies to each organization.
+
+- **Notification sender**  
+  The **From name** and **From email** used for invitations and reminders.
+
+## Common actions
+
+- **Finalize**  
+  Lock preparation. Required before starting.
+
+- **Start now** / **Start later**  
+  Send invitations immediately, or keep the session in **Ready to start**.
 
 - **Download All**  
-  Exports the completed, validated document bundle after a session reaches **Finished**.
+  Download the signed PDF bundle and audit trail after the session is **Finished**.
 
-- **Validation badge**  
-  The indicator (e.g., *Validated by Entrust*) shown in the session view confirming cryptographic validation of the signed file.
+- **Void**  
+  Stop a session so it can’t be completed. Requires permission.
 
-## Session statuses
+- **Change signing session**  
+  Edit an **In progress** session (if enabled for your role/tenant).
 
-| Status | Meaning | What you usually do |
-|---|---|---|
-| **Draft** | Session created; fields not finalized. | Place fields → **Finalize**. |
-| **Ready to start** | Finalized but not started. | Open the session → **Start**. |
-| **In progress** | Invitations sent; waiting on participants. | Monitor; **Resend** if needed. |
-| **Finished** | All required participants completed signing. | **Download All** and archive. |
-| **Declined** | A participant refused to sign. | Replace participant or create a new session. |
-| **Voided** | Session canceled by a user with permission. | Create a new session if needed. |
-| **Expired** | Session ended due to expiration policy. | Start a new session; adjust policy via **Settings set** if required. |
-| **Need to sign** | A personalized queue showing items where *you* are a participant. | Open and complete signing. |
+## Session states
 
-**Tip:** Status names match the filters on the **Home** dashboard.
+- **Draft** — In preparation; documents/fields editable.  
+- **Ready to start** — Finalized; waiting for **Start now**.  
+- **In progress** — Invitations sent; participants are signing.  
+- **Finished** — All required participants completed signing.  
+- **Declined** — A participant declined to sign.  
+- **Voided** — An admin or authorized user cancelled the session.  
+- **Expired** — Deadline passed (per settings set).
+
+## Roles and access
+
+- **Administrator**  
+  Can manage org settings, **roles**, **users**, **settings sets**, **notification senders**, **template overlays**, and usually **Change/ Void signing session**.
+
+- **Standard User**  
+  Can create, finalize, and start signing sessions; apply template overlays.
+
+> **Tip:** See the role matrix for precise capabilities in your tenant.
+
+## Notifications and delivery
+
+- **Email** / **SMS**  
+  Invitation and reminder channels. SMS availability and quiet hours come from the **settings set**.
+
+- **Allow-list**  
+  In non-prod, domains permitted to receive email (e.g., `*@company.com`).
+
+- **Quiet hours**  
+  Time window when SMS will not be sent.
+
+## Environment terms
+
+- **Production** — Live environment for real participants and webhooks.  
+- **Staging (customer test)** — Safe testing with allow-lists/sandboxes.  
+- **Developer Test** — Internal QA/dev; data is short-lived.
+
+## Security and compliance
+
+- **Audit trail**  
+  Time-stamped record of actions and events for a session (creation, finalize, start, signing steps, completion).
+
+- **SSO**  
+  Single sign-on via your identity provider (IdP). Separate connectors may exist for staging vs production.
+
+## Other helpful terms
+
+- **Signing link**  
+  Secure URL sent to a participant to open the signing experience (availability/visibility depends on tenant settings).
+
+- **Signing order**  
+  Numeric order (1..n) that enforces sequence among participants.
+
+- **Entrust validation**  
+  Platform-level document validation shown post-completion (label may appear in the UI and download bundle).
+
+- **Bulk send**  
+  Capability that lets admins send many sessions at once (availability varies by tenant/role).
 
 **Related reading**
-- See also: [Quickstart: send your first document](./get-started/quickstart.md)  
-- See also: [Create and start a signing session](./how-to/create-and-send-document.md)  
-- See also: [Roles and permissions](./admin/roles-permissions.md)
+- See also: [Quickstart: send your first document](docs/get-started/quickstart.md)  
+- See also: [Create and start a signing session](docs/how-to/create-and-send-document.md)  
+- See also: [Roles and permissions](docs/admin/roles-permissions.md)  
+- See also: [Template overlays](docs/admin/template-overlays.md)  
+- See also: [Settings sets](docs/admin/settings-sets.md)  
+- See also: [Notification senders](docs/admin/notification-senders.md)
