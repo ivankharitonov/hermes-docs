@@ -35,6 +35,9 @@ Use this guide to resolve the most frequent problems when starting a signing ses
 | Can’t edit active session | Role lacks **Change signing session** | Ask an **Administrator** to grant the permission; otherwise **Void** and recreate. | Immediate |
 | Can’t **Void** a session | Role restriction | Ask an **Administrator** to void; or request the permission. | Immediate |
 | Download is missing or partial | You opened the wrong session or it hasn’t finished | Use the **Finished** filter; open the correct session; click **Download All**. | Immediate |
+| No template picker in **New signing session** | This tenant uses ad-hoc start flow | Upload a file, then **Uploaded documents → ⋯ → Apply template overlay** | Immediate |
+| Emails show the wrong **From** | Org is using a different **settings set** | Check **Settings sets → Associated organizations** and reassign if needed | Next email |
+| **Apply template overlay** isn’t visible | No document uploaded yet | Click **Add document**, then open the document menu (⋯) | Immediate |
 
 **Note:** Exact UI text can vary per tenant. The flow in this page matches the current product labels.
 

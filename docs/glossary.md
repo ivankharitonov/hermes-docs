@@ -35,6 +35,10 @@ Short, precise definitions of words you’ll see in the UI and docs.
 
 - **Signing order**  
   The sequence recipients must follow. If set, later signers can’t act until earlier signers finish.
+  
+  - **Settings set:** Org-level defaults for sending (time zone, expiry, sender, SMS rules, templates). Exactly **one** settings set per organization. One set can be **shared** by multiple orgs.
+- **Template overlay:** A reusable layout of **participants** and **placed fields**. Created under **Manage templates** and **applied during session preparation** from **Uploaded documents → ⋯ → Apply template overlay**.
+
 
 ## Actions and states
 - **Finalize**  

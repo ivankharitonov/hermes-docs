@@ -17,6 +17,11 @@ EasyInk includes two built-in roles:
 - **Administrator** – full admin and sending capabilities.
 - **Standard User** – sending capabilities without org-level administration.
 
+- **Organization model:** Each user belongs to **one** organization. Each organization uses **one** applied **settings set**.
+- **Admins:** Can create/edit/finalize **settings sets**; assign them to organizations; create/finalize **template overlays**.
+- **Senders:** Can apply **template overlays** during session preparation; cannot change the **From** address (it comes from the org’s settings set).
+
+
 **Note:** Your tenant may include more granular toggles. The tables below reflect the permissions visible in the current UI.
 
 ## Role capability matrix

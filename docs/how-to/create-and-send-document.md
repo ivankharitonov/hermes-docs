@@ -20,6 +20,7 @@ Use a signing session to collect signatures on one or more documents. This guide
 - **Environment:** Use **Production** at `https://easyink.io`. If your organization has a customer-safe **test environment**, use the URL provided by your administrator.
 - **Document:** PDF ready for signing.
 
+**Note:** The email **From** address is set by your organization’s **settings set**. Senders can’t change it during the send flow.
 **Tip:** For many recipients, use **Bulk Upload** at the top of the session editor.
 
 ## Steps

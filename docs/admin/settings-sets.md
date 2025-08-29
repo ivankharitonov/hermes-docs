@@ -1,10 +1,10 @@
 ---
 title: "Settings sets"
-description: "Create reusable defaults for expiration, reminders, and sender. Apply them to documents and templates to stay consistent."
+description: "Define one shared sender and expiration rules per organization. Multiple orgs can reuse the same settings set."
 audience: ["admins"]
-keywords: ["e-sign", "settings", "expiration", "reminders", "notification sender"]
+keywords: ["e-sign", "settings", "expiration", "notification sender", "organizations"]
 easyink_version: "web"
-last_reviewed: "2025-08-28"
+last_reviewed: "2025-08-29"
 related: ["../how-to/create-and-send-document.md", "roles-permissions.md", "notification-senders.md", "environments.md", "../troubleshooting/sending.md"]
 ---
 
@@ -12,118 +12,106 @@ related: ["../how-to/create-and-send-document.md", "roles-permissions.md", "noti
 **Applies to:** admins
 
 ## Overview
-Use a **settings set** to bundle defaults you reuse on many documents: **expiration window (days/hours)**, **notification sender (email)**, **time zone**, **SMS rules (number + allowed hours)**, and **notification templates**. You can also enable **Send documents in e-mail attachments** if your org allows it.
+A **settings set** bundles defaults your organization uses when sending documents:
 
-- Create once. Reuse across senders and templates.
-- Change the set later to update **future** sends that use it.  
-  **Caution:** Changing a settings set typically **does not** modify already-sent sessions. Confirm whether live sessions are affected before editing.
+- **Notification sender** (From name + From email)
+- **Expiration window** (add days / add hours)
+- **Time zone**
+- **SMS rules** (send-from number + allowed hours)
+- **Notification templates** (invite, reminder, completed, expired, voided, etc.)
+
+**How it works**
+- **Each user belongs to exactly one organization.**
+- **Each organization uses exactly one settings set.** You assign the set to the org once; senders don’t choose per session.
+- **A settings set can be shared by many organizations.** The **sender** defined in the set applies to **all** organizations that use it.
+
+**Caution:** Changing a settings set updates **future** sessions for organizations that use it. It typically **does not** change already-sent sessions.
 
 ## Example first
-You want every NDA to expire in **7 days at 17:00 local time**, and you want emails to come from `signing@yourorg.com`. SMS reminders should only send between **08:00–21:00**.
+You manage two orgs—**Sales** and **HR**—that should send from the same mailbox.
 
-**Example: “NDA – Standard” settings set**
-- Time zone: **UTC** (or your org default)
-- Expiration: **Add days to sign by date = 7**; **Add hours to sign by time = 17**  
-  (Deadline occurs 7 days out at 17:00 in the set’s time zone.)
-- Email sender: **From name** `EasyInk Team`; **From email** `signing@yourorg.com`
-- **Send documents in e-mail attachments:** Off
-- SMS: **Send SMS from number** `+1 415…`; **Allowed time** `08:00–21:00`
-- Templates: set your **Signing notification**, **Reminder**, **Expired**, and **Completed** copy.
+- Create **Set: “Default – Corp”**
+  - Time zone: **UTC**
+  - Add days to sign by date: **7**
+  - Add hours to sign by time: **17**
+  - Send from email name: **EasyInk Team**
+  - Send from email address: **signing@yourorg.com**
+  - SMS hours: **08:00–21:00**
+- **Associate organizations:** Sales, HR
+- **Finalize**
+
+Both orgs will send emails from `signing@yourorg.com`. If you later change the sender, new sessions from both orgs use the new address.
 
 ## Before you begin
-- **Role:** **Administrator** with permission to **Manage settings sets**.
-- **Access:** Open **Settings sets** from the left navigation.
-- **Inputs:** Name, time zone, expiration (days + hours), email **From name/address**, optional SMS number & hours, and the notification templates you plan to use.
-- **Environment:** Use a customer-safe test environment to validate sender behavior and SMS windows. See [Environments](environments.md).
+- **Role:** Administrator with permission to **Manage settings sets**.
+- **Access:** **Settings sets** in the left navigation.
+- **Inputs:** Name, time zone, expiration (days + hours), **From** name/address, optional SMS number & hours; which **organizations** should use this set.
+- **Environment:** Test in a non-prod environment first. See [Environments](environments.md).
 
 ## Steps
 
-### 1. Create a settings set
-1. Sign in to EasyInk.
-2. Go to **Settings sets** and click **Add New Settings Set**.
-3. Enter a **Setting Set Name** (e.g., *NDA – Standard*).
-4. Set **Time zone** (controls deadlines and SMS windows).
-5. Define the **expiration window**:  
-   - **Add days to sign by date** – number of days before the session expires.  
-   - **Add hours to sign by time** – the hour/minute of the deadline on that day.  
-   **Caution:** Confirm whether the deadline is anchored to **Start** vs **Finalize** time for your tenant.
-6. Configure **Email sender**:  
-   - **Send from email name** and **Send from email address**. (Must match a verified sender.)  
-   - (Optional) **Send documents in e-mail attachments** if your policy allows sending attachments.
-7. Configure **SMS** (optional):  
-   - **Send SMS from number** (choose a provisioned number).  
-   - **Allowed time for sending SMS notifications** (e.g., **08:00 AM → 09:00 PM**).
-8. Edit **Templates** (notifications):  
-   - **Signing notification**, **Reminder**, **Expired**, **Completed**, **Voided**, plus **Terms & conditions** and **Instructions to signer** as needed. Click the **pencil** icon to edit each.
-9. Click **Save & Close** to keep it as a **Draft**, or **Finalize** to make it available for use.  
-   **Note:** You may see **Associated organizations** at the top. Assign organizations if your tenant requires it before **Finalize**.
+### 1) Create a settings set
+1. Go to **Settings sets** → **Add New Settings Set**.
+2. Enter a **Setting Set Name** (e.g., *Default – Corp*).
+3. Set **Time zone**.
+4. Define the **expiration window**:  
+   - **Add days to sign by date**  
+   - **Add hours to sign by time**
+5. Configure **Email sender**:  
+   - **Send from email name**  
+   - **Send from email address** (must be a verified sender per your policy)
+6. (Optional) Configure **SMS**: **Send SMS from number** and **Allowed time for sending SMS notifications**.
+7. (Optional) Open **Templates** and edit your invite, reminder, completed, expired, and voided messages.
+8. Click **Save & Close** (keeps it **Draft**) or continue to assign organizations.
 
-### 2. Apply a settings set when sending
-1. Start the **Create & send** flow.
-2. In **Settings**, choose **Settings set** if your tenant exposes the selector; otherwise, the org default applies.
-3. Review the summary on the **Review** step.
-4. **Start now**.
+### 2) Assign the settings set to organizations
+1. In the set editor, use **Associated organizations** (top of page).
+2. Add the organizations that should use this set.
+3. Click **Finalize**.
 
-### 3. Edit, duplicate, or archive a settings set
-1. Go to **Settings sets**.
-2. Select a set.
-3. Choose **Edit**, **Duplicate**, or **Archive**.  
-   - **Edit**: Change values for **future** sends.  
-   - **Duplicate**: Create a variant (e.g., *NDA – 14 days*).  
-   - **Archive**: Hide from pickers. Existing sessions keep their original settings. *(Confirm behavior for your tenant.)*
+**Note:** Once finalized and associated, this set becomes the **org default**. Senders in those orgs will not pick a different set during the send flow.
+
+### 3) Edit, duplicate, or archive
+- **Edit:** Adjust fields and **Save & Close** / **Finalize** again. Affects **future** sessions from associated orgs.
+- **Duplicate:** Create a variant (e.g., different sender or expiry) and associate to other orgs.
+- **Archive:** Hide the set from new org associations. Existing org associations remain until you reassign them.
 
 ## Fields reference
-
-| Name | Type | Required | Default | Description |
+| Field | Type | Required | Default | Description |
 |---|---|---|---|---|
-| Setting Set Name | text | Yes | — | Display name shown in the list. |
-| Time zone | select | Yes | Org default | Time zone used for expiration and SMS quiet hours. |
-| Add days to sign by date | integer | Yes | 0 | Number of days after anchor time when the session should expire. |
-| Add hours to sign by time | integer (0–23) | Yes | 0 | Hour component of the expiration deadline on the target day. |
-| Send from email name | text | No | — | Friendly **From** name recipients see. |
-| Send from email address | email | No | — | **From** address; should be a verified sender. |
-| Send documents in e-mail attachments | checkbox | No | Off | Sends signed documents as attachments (if enabled by policy). |
+| Setting Set Name | text | Yes | — | Display name of the set. |
+| Time zone | select | Yes | Org default | Used for deadlines and SMS windows. |
+| Add days to sign by date | integer | Yes | 0 | Days until the session expires. |
+| Add hours to sign by time | integer (0–23) | Yes | 0 | Hour/minute of the deadline on the target day. |
+| Send from email name | text | Yes | — | Friendly **From** name. |
+| Send from email address | email | Yes | — | **From** address; applies to **all organizations** using this set. |
+| Send documents in e-mail attachments | checkbox | No | Off | Include signed docs as attachments if allowed by policy. |
 | Send SMS from number | select | No | — | Originating number for SMS notifications. |
-| Allowed time for sending SMS notifications | time range | No | 08:00–21:00 | Quiet-hours window for SMS sending. |
-| Templates | links | No | platform defaults | Edit text for invites, reminders, expired/voided/completed notices, terms, and instructions. |
-
-**Note:** Field names reflect the current UI.
+| Allowed time for sending SMS notifications | time range | No | 08:00–21:00 | Quiet-hours window for SMS. |
+| Templates | links | No | Platform defaults | Edit text for invites, reminders, completed, expired, voided, terms, instructions. |
+| Associated organizations | selector | Yes (to activate) | — | Organizations that **use** this set. One set per org; a set can be shared across many orgs. |
 
 ## Troubleshooting
-
 | Symptom | Cause | Fix | Time to verify |
 |---|---|---|---|
-| Settings set stays **(Draft)** or isn’t selectable | Not **Finalized** or missing org association | Open the set → complete required fields → **Finalize**; add **Associated organizations** if required | Immediate |
-| Signers are **not receiving reminders** | Reminder text not configured; sender not verified | Edit **Templates**; verify the **From** address per your sender policy | Next reminder window |
-| Session **expired earlier** than expected | Wrong time zone or anchor time assumption | Check **Time zone**; confirm anchor time (Start vs Finalize) for expiration; adjust days/hours | Immediate after resend |
-| **Settings set missing** in the send flow | Selector hidden for your tenant or set archived | Use the org default or ask an admin to expose the selector; unarchive the set | Immediate |
-| Emails show the **wrong From** | Different default sender applied | Edit the set’s **Send from** fields or set the org default correctly | Next email |
-| SMS not sent during the day | Quiet-hours window too restrictive | Expand **Allowed time** range | Next SMS window |
+| Emails show an unexpected **From** | Your org is associated to a different settings set | Open the set and check **Associated organizations**; reassign the org if needed | Immediate |
+| Sender can’t change the **From** address in the send flow | Sender selection is controlled by the **org’s settings set** | Update the **Send from** fields in the set, then **Finalize** | Next email |
+| Set is **Draft** and not in effect | Not **Finalized** or no orgs associated | Add **Associated organizations**, then **Finalize** | Immediate |
+| Sessions expire too early/late | Wrong time zone or days/hours | Adjust **Time zone** and expiration fields; resend | Immediate after resend |
+| SMS not delivered during the day | Quiet hours too tight | Widen **Allowed time** range | Next SMS window |
 
 ## FAQs
-**Do changes to a settings set update live sessions?**  
-Usually no. Most tenants snapshot settings at send time. Confirm with your admin.
+**Can one settings set be used by multiple organizations?**  
+Yes. Add each org in **Associated organizations**.
 
-**Can I override settings per recipient?**  
-Only if the send flow exposes per-recipient overrides.
+**Can an organization use more than one settings set?**  
+No. Each organization has **one** applied settings set at a time.
 
-**Is there a limit to the number of settings sets?**  
-TBD (confirm org-level limit).
+**Can senders override the sender per session?**  
+No. The **From** address is defined in the settings set used by the org.
 
-**Can I export/import settings sets between environments?**  
-TBD (UI export/import).
-
-## Open questions (track for internal follow-up)
-- Anchor time for expiration (Start vs Finalize vs creation).
-- Whether **Finalize** locks fields vs allows later edits; impact on in-flight sessions.
-- Behavior of live sessions and scheduled reminders if the set changes.
-- What **Archive** does to usage and live sessions.
-- Org limits: max settings sets per workspace/org.
-- Sender verification scope: per workspace vs org-wide.
-- Whether **Post-sign redirect** exists per set (not visible in current UI).
-- Locale options to document (requested: **en-US**, **es-MX**); where language is selected (per participant vs per set).
-- Can a settings set be attached as a **default** to a Template/Overlay; exact click-path.
-- Staging differences (email/SMS policy, purge window) and any audit-log events for create/edit/archive.
+**Do edits affect sessions already sent?**  
+No. Edits apply to **future** sessions.
 
 ## API
 Not applicable today. *(Add cURL/Node/Python once API is public.)*
